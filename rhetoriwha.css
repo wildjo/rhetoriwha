@@ -1,0 +1,507 @@
+/* --- Basic Reset & Globals --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* body font */
+    line-height: 1.6;
+    color: #333;
+    background-color: #FFE; /* subtle off-white */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1, h2 {
+    font-family: 'Love Ya Like A Sister', serif; /*= heading font */
+    color: #4a4a4a; /* Dark grey for headings */
+    margin-bottom: 0.5em;
+    font-weight: 700;
+}
+
+h1 { font-size: 3.8em; }
+h2 { font-size: 2.8em; }
+
+p, li, label, button, input {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em; /* Base font size */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Prevents extra space below images */
+}
+
+/* --- Scroll Graphics (Example using Background Images) --- */
+.header-scroll,
+.footer-scroll,
+.input-scroll {
+    width: 100%;
+    background-color: #fdf3e0; /*  beige color for scroll */
+    /* If using image files for scrolls: */
+    /* background-image: url('images/scroll-background.png'); */
+    /* background-repeat: repeat-x; or no-repeat + background-size */
+    /* background-size: cover; or contain */
+    padding: 1em 0; /* Add padding top/bottom */
+    margin-bottom: 2em;
+    position: relative; /* For potential scroll end caps */
+    border-top: 2px solid #e4d9c3;
+    border-bottom: 2px solid #e4d9c3;
+}
+
+/* Add scroll end cap graphics if needed using ::before / ::after */
+
+
+/* --- Header --- */
+.header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1em;
+    text-align: center;
+}
+.header-content h1 {
+     color: #6b4f34; /* Brownish color */
+}
+.header-content p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.status-bar {
+    background-color: #e0e0e0; /* Light grey */
+    color: #555;
+    font-size: 0.9em;
+    padding: 0.3em 1em;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}
+.status-indicator .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+.status-indicator .dot.red { background-color: #e74c3c; }
+.status-indicator .dot.green { background-color: #2ecc71; }
+
+/* --- Main Content Area --- */
+.main-content {
+    max-width: 1000px; /* Adjust as needed */
+    width: 90%;
+    margin: 2em auto;
+}
+
+/* --- Intro Section --- */
+.intro-section {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    margin-bottom: 3em;
+    padding: 1em;
+}
+.intro-image {
+    flex-basis: 30%; /* Adjust size ratio */
+    max-width: 350px; /* Limit image size */
+}
+.intro-text {
+    flex-basis: 70%;
+}
+.intro-text ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1em;
+}
+.intro-text li {
+    margin-bottom: 0.3em;
+}
+
+/* --- Input Section --- */
+.input-scroll {
+    padding: 2em 1em; /* More padding */
+}
+.input-area {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+.input-area h2 {
+    margin-bottom: 1.5em;
+}
+.input-options {
+    display: flex;
+    justify-content: space-around;
+    gap: 2em;
+    margin-bottom: 1.5em;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+.input-option {
+    flex: 1;
+    min-width: 250px; /* Prevent options becoming too narrow */
+    text-align: left;
+    padding: 1em;
+    border: 1px solid #e4d9c3;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.5); /* Slight white overlay */
+}
+.input-option label {
+    display: block;
+    margin-bottom: 0.8em;
+    font-weight: bold;
+    color: #6b4f34;
+}
+input[type="file"],
+input[type="url"] {
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+button {
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 5px;
+    background-color: #8d725a; /* Brownish button */
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    gap: 0.5em;
+}
+button:hover:not(:disabled) {
+    background-color: #6b4f34;
+}
+button:disabled {
+    background-color: #bcaaa4;
+    cursor: not-allowed;
+}
+.button-icon {
+    width: 16px;
+    height: 16px;
+}
+
+#status {
+    margin-top: 1em;
+    font-weight: bold;
+    min-height: 1.2em;
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+#status.loading { color: #a07d5e; background-color: #fdf3e0; }
+#status.success { color: #2b7a2f; background-color: #e4f8e5; }
+#status.error { color: #c0392b; background-color: #fbecec; }
+
+
+/* --- Output Section - Revised for Grid --- */
+.output-section {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    text-align: center;
+}
+.output-content-area {
+    margin-top: 1.5em;
+    background-color: #f9f9f9; /* Existing background */
+    border: 1px solid #e0e0e0; /* Existing border */
+    border-radius: 10px;      /* Existing radius */
+    padding: 1.5em;           /* Existing padding */
+    min-height: 300px;        /* Ensure space */
+}
+
+/* --- The CSS Grid Container --- */
+.result-grid-container {
+    display: grid;
+    /* 2 equal columns */
+    grid-template-columns: 1fr 1fr;
+     /* Let rows size automatically */
+    grid-template-rows: auto auto;
+    /* Space between grid items */
+    gap: 1.5em;
+    width: 100%;
+}
+
+/* --- Grid Item Styling --- */
+.result-thumbnail-area {
+    /* Grid position is implicit by order in HTML */
+    border: 1px solid #ccc;
+    background-color: #eee;
+    padding: 5px;
+    display: flex; /* Center image within area */
+    justify-content: center;
+    align-items: center;
+    min-height: 150px; /* Ensure space */
+}
+.result-thumbnail {
+    max-width: 100%;
+    max-height: 300px; /* Max height for thumbnail */
+    object-fit: contain;
+}
+
+.result-plato-graphic-area {
+    /* Grid position implicit */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically center Plato */
+}
+.result-plato-graphic-area img {
+    max-width: 180px; /* Control size */
+    height: auto;
+}
+
+.result-chart-area {
+    /* Grid position implicit */
+    border: 1px solid #eee;
+    padding: 10px 15px 10px 15px; /* Adjusted padding */
+    background-color: #fff;
+    border-radius: 5px;
+    height: 150px; /* Fixed height for chart area + labels */
+    display: flex; /* Use Flexbox for bars */
+    align-items: flex-end; /* Bars grow from bottom */
+    justify-content: center; /* Center bars */
+    gap: 20px; /* Space between bar groups */
+    position: relative; /* For icons if needed */
+}
+
+.chart-item {
+    display: flex;
+    flex-direction: column; /* Stack bar and label */
+    align-items: center;    /* Center horizontally */
+    height: 100%; /* Allow bar to use percentage height */
+    justify-content: flex-end; /* Align bar to bottom */
+}
+
+.chart-bar {
+    width: 35px;
+    background-color: #ccc;
+    transition: height 0.5s ease-out;
+    margin-bottom: 0.3em; /* Space between bar and label */
+     /* Height set by inline style */
+}
+.logos-bar { background-color: #e74c3c; }
+.ethos-bar { background-color: #2ecc71; }
+.pathos-bar { background-color: #3498db; }
+
+.chart-label {
+    font-size: 0.9em;
+    font-weight: bold;
+    line-height: 1; /* Prevent extra spacing */
+    text-align: center;
+}
+.chart-item:nth-child(1) .chart-label { color: #e74c3c; } /* L */
+.chart-item:nth-child(2) .chart-label { color: #2ecc71; } /* E */
+.chart-item:nth-child(3) .chart-label { color: #3498db; } /* P */
+
+
+/* Position icons within chart area if needed */
+.result-chart-area .chart-icon {
+    position: absolute;
+    bottom: 10px; /* Position from bottom */
+    width: 20px;
+    height: 20px;
+}
+
+.result-text-area {
+    /* Grid position implicit */
+    text-align: left;
+    padding-top: 0.5em; /* Align text better */
+}
+.result-text-area p { margin-bottom: 0.5em; }
+.plato-says {
+    font-family: 'Love Ya Like A Sister', cursive; /* Use your serif/script font */
+    font-size: 1.15em; /* Slightly larger */
+    color: #5a4430;
+    margin-top: 1em;
+    font-style: italic;
+}
+.plato-says strong { font-style: normal; }
+
+
+/* --- Responsive: Stacking on Mobile --- */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+    .result-grid-container {
+        grid-template-columns: 1fr; /* Single column */
+        grid-template-rows: auto;   /* Auto rows */
+    }
+
+    /* Define the stacking order using the 'order' property */
+    .result-thumbnail-area { order: 1; }
+    .result-chart-area { order: 2; height: 180px; /* Maybe give chart more height? */}
+    .result-plato-graphic-area { order: 3; margin-top: 1em; } /* Add space above Plato graphic */
+    .result-text-area { order: 4; text-align: center; margin-top: 1em;} /* Center text */
+
+     /* Center Plato image better when stacked */
+     .result-plato-graphic-area img { max-width: 150px; }
+
+     /* Adjust chart icons position for stacked view if needed */
+     .result-chart-area .chart-icon { /* Example adjustment */
+         bottom: 15px;
+     }
+}
+
+/* --- Styling for Initial Placeholder (Keep this) --- */
+.result-placeholder {
+    /* ... (keep styles from previous step) ... */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3em 1em;
+    text-align: center;
+    width: 100%;
+    min-height: 250px;
+    opacity: 0.6;
+    color: #666;
+}
+.result-placeholder img {
+    max-width: 180px;
+    margin-bottom: 1em;
+}
+
+.result-chart-container {
+    display: flex;
+    align-items: flex-end; /* Bars grow from bottom */
+    justify-content: center; /* Center bars */
+    gap: 15px; /* Space between bars */
+    height: 100px; /* Fixed height for chart area */
+    border: 1px solid #eee;
+    padding: 10px 15px 25px 15px; /* Bottom padding for labels */
+    margin-top: 1em;
+    position: relative; /* For positioning labels */
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.chart-bar {
+    width: 35px; /* Width of each bar */
+    background-color: #ccc; /* Default bar color */
+    transition: height 0.5s ease-out;
+    position: relative; /* Needed if adding value tooltips */
+}
+.logos-bar { background-color: #e74c3c; } /* Red */
+.ethos-bar { background-color: #2ecc71; } /* Green */
+.pathos-bar { background-color: #3498db; } /* Blue */
+
+.chart-label {
+    position: absolute;
+    bottom: 0px; /* Position below the bars */
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    width: 35px; /* Match bar width */
+}
+.logos-label { left: 15px; /* Adjust based on padding/gap */ color: #e74c3c;}
+.ethos-label { left: calc(15px + 35px + 15px); color: #2ecc71; }
+.pathos-label { left: calc(15px + 35px + 15px + 35px + 15px); color: #3498db; }
+
+.chart-icon {
+    position: absolute;
+    bottom: 10px;
+    width: 20px;
+    height: 20px;
+}
+.sound-icon { right: 60px; /* Adjust position */ }
+.slider-icon { right: 20px; /* Adjust position */ }
+
+.result-image-right { /* Container for the Plato w/ tablet image */
+    flex: 1 1 30%; /* Takes up less space */
+    min-width: 300px;
+    display: flex;
+    align-items: center; /* Center image vertically */
+    justify-content: center;
+}
+.result-image-right img {
+    max-width: 200px; /* Control size */
+}
+
+/* --- Reflection Section --- */
+.reflection-section {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    padding: 1em;
+}
+.reflection-content {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 2em;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+.reflection-image {
+    flex-basis: 25%;
+    max-width: 180px;
+}
+.reflection-text {
+    flex-basis: 75%;
+}
+.reflection-text h2 { text-align: center; }
+.reflection-text ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1em;
+}
+
+
+/* --- Footer --- */
+.footer-scroll {
+    padding: 2em 1em;
+    margin-top: 2em; /* Ensure space above footer */
+    margin-bottom: 0; /* Footer at bottom */
+    font-size: 0.9em;
+    color: #555;
+    text-align: center;
+}
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.disclaimer {
+    font-size: 0.8em;
+    margin-top: 1em;
+    color: #777;
+}
+
+/* --- Responsive Adjustments (Example) --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2em; }
+    h2 { font-size: 1.6em; }
+
+    .intro-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .intro-image { max-width: 350px; margin-bottom: 1em;}
+
+    .input-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    .input-option { width: 90%; max-width: 350px; }
+
+    #result {
+        flex-direction: column; /* Stack result elements */
+        align-items: center;
+    }
+    .result-image-right {
+         order: -1; /* Move Plato image above results on mobile if desired */
+         margin-bottom: 1.5em;
+    }
+
+    .reflection-content {
+         flex-direction: column;
+         text-align: center;
+    }
+     .reflection-image { margin-bottom: 1em; }
+}

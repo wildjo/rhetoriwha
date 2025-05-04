@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rhetor-i-Wha?!</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="rhetoriwha.css">
+</head>
+<body>
+
+    <header class="header-scroll">
+        <div class="header-content">
+            <div class="header-image">
+                <img src="images/rhetoriwha-logo.png" alt="jumbled character logo for rhetor-i-wha app">
+            </div>
+            <p>The web app Plato would have used to detect rhetorical <a href="https://wikipedia.org/wiki/Modes_of_persuasion">modes of persuasion</a>.</p>
+        </div>
+        <div class="status-bar">
+            <span>Rhetorical image-evaluation model:</span>
+            <span class="status-indicator loading">loading... <span class="dot red"></span></span>
+            <span class="status-indicator loaded" style="display: none;"> loaded <span class="dot green"></span></span>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <section class="intro-section">
+            <div class="intro-image">
+                <img src="images/plato-computer.png" alt="Plato cartoon using a computer">
+            </div>
+            <div class="intro-text">
+                <h2>What in the Rhetoric?</h2>
+                <p>In <a href="https://wikipedia.org/wiki/Rhetoric">Rhetoric</a>, we learn about modes of persuasion. Plato identified several, but of those, three are most common.</p>
+                <ul>
+                    <li>&nbsp; 🫒 <strong><a href="https://wikipedia.org/wiki/Logos">Logos:</a></strong> appeal to reason and logic</li>
+                    <li>&nbsp; 🫒 <strong><a href="https://wikipedia.org/wiki/Ethos">Ethos:</a></strong> appeal to ideals and beliefs</li>
+                    <li>&nbsp; 🫒 <strong><a href="https://wikipedia.org/wiki/Pathos">Pathos:</a></strong> appeal to emotion and vibes.</li>
+                </ul>
+                <p>Using advanced machine learning techniques, you can process an image or link for rhetorical flourishes that might signal these modes at work.</p>
+            </div>
+        </section>
+
+        <section class="input-scroll">
+            <div class="input-area">
+                <h2>What Might Plato Say?</h2>
+                <div class="input-options">
+                    <div class="input-option">
+                        <label for="imageUpload">Option 1: Upload Image File</label>
+                        <input type="file" id="imageUpload" accept="image/*">
+                        <button id="analyzeButton" disabled>🖥️ 👁️ &nbsp; Analyze Upload</button>
+                    </div>
+                    <div class="input-option">
+                        <label for="urlInput">Option 2: Analyze Preview Image from Web Page URL</label>
+                        <input type="url" id="urlInput" placeholder="e.g., https://www.example.com">
+                        <button id="analyzeUrlButton" disabled>🖥️ 🔗 &nbsp; Analyze URL</button>
+                    </div>
+                </div>
+                 <!-- Status message area moved here -->
+                 <div id="status">Loading script...</div>
+            </div>
+        </section>
+
+        <section class="output-section">
+            <h2>What the Machine Says:</h2>
+            <div class="output-content-area">
+                 <!-- Results will be injected here by JavaScript -->
+                 <div id="result">
+                     <!-- Initial Placeholder -->
+                     <div class="result-placeholder">
+                         <img src="images/plato-sleeping.png" alt="Plato sleeping, awaiting analysis">
+                         <p>Awaiting image or URL...</p>
+                     </div>
+                     <!-- Dynamic results will replace the placeholder -->
+                 </div>
+            </div>
+        </section>
+				
+        <section class="reflection-section">
+             <div class="reflection-content">
+                <div class="reflection-image">
+                     <img src="images/plato-phone.png" alt="Plato cartoon holding a smartphone">
+                 </div>
+                <div class="reflection-text">
+                    <h2>Reflection Time!</h2>
+		                <ul>
+		                    <li>&nbsp; 🫒 This demonstration uses the <a href="https://huggingface.co/docs/transformers.js/index">browser-based transformer architecture</a> to analyze images for dominant rhetorical modes of persuasion using <a href="https://huggingface.co/openai/clip-vit-large-patch14">OpenAI's CLIP image-classification model</a>.</li>
+                    <li>&nbsp; 🫒 Machine learning isn't perfect, and this model was not designed for the purpose of rhetorical mode identification. Statistical models are well-known for their potential for error, and this is no exception. Even Plato made mistakes.<a href="https://bigthink.com/culture-religion/platos-confesses-his-10-biggest-errors/">*</a></li>
+                    <li>&nbsp; 🫒 In the end, all understanding is subject to change. Keep an open mind and, like Plato, always ask, "Why?"</li>
+									</ul>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer-scroll">
+        <div class="footer-content">
+             <p>Machine learning can help you notice patterns, but critical thinking is required to understand the patterns. URL analysis relies on a preview service (via a secure worker) to find the page's primary image; results depend on that service's success.</p>
+             <p class="disclaimer">No data is collected or retained by zipbangwow.com, though services we leverage for design and compute, which may collect your data without our awareness or consent. If you do not wish to share your request with google.com, huggingface.co, cloudflare.com or linkpreview.net, you should not use this website.</p>
+						 <p class="disclaimer">This website was designed by <a href="https://www.emojiency.com">Johanna Wilder</a> (words, design and project management) for Professor Kayleen Kondrack-Caranto's excellent English 279: Writing for Social Media Rhetoric course at <a href="https://www.shoreline.edu">Shoreline Community College</a>, spring quarter 2025 with the help of Google Gemini 2.5 Pro (<a href="https://aistudio.google.com/app/prompts?state=%7B%22ids%22:%5B%221f4kwhEblGkzwsfN-9-3OXMScRuERlrCJ%22%5D,%22action%22:%22open%22,%22userId%22:%22103036167069027315261%22,%22resourceKeys%22:%7B%7D%7D&usp=sharing">code</a>) and also ChatGPT 4o and OpenAI.fm (<a href="https://chatgpt.com/share/6817e4a0-9acc-8013-b644-0c5a5147b66e">sounds and images</a>). Images, code, words, and website are <a href="https://www.copyright.gov/ai/Copyright-and-Artificial-Intelligence-Part-2-Copyrightability-Report.pdf">public domain</a>. No rights reserved.</p>
+							 
+							  
+							 
+        </div>
+    </footer>
+
+    <!-- JavaScript goes here -->
+    <script type="module">
+        import { pipeline } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@latest';
+
+        // --- CONFIGURATION ---
+        const CLOUDFLARE_WORKER_URL = 'https://rhetoriwha.jiejie-637.workers.dev'; // Wworker URL
+        const MODEL_NAME = 'Xenova/clip-vit-large-patch14'; // Or your preferred CLIP model
+
+        // --- DOM Element References ---
+        const statusDiv = document.getElementById("status");
+        const loadingIndicator = document.querySelector(".status-indicator.loading");
+        const loadedIndicator = document.querySelector(".status-indicator.loaded");
+        const imageInput = document.getElementById('imageUpload');
+        const analyzeButton = document.getElementById("analyzeButton");
+        const urlInput = document.getElementById('urlInput');
+        const analyzeUrlButton = document.getElementById("analyzeUrlButton");
+        const resultDiv = document.getElementById('result');
+
+        let classifier; // To hold the classification pipeline
+
+        // --- Helper Functions ---
+        function updateStatus(message, isLoading = false, isError = false) {
+            if (statusDiv) {
+                statusDiv.textContent = message;
+                statusDiv.className = isError ? 'error' : (isLoading ? 'loading' : 'success');
+            }
+        }
+
+        function updateModelStatus(loaded = false) {
+             if (loadingIndicator && loadedIndicator) {
+                loadingIndicator.style.display = loaded ? 'none' : 'inline-block';
+                loadedIndicator.style.display = loaded ? 'inline-block' : 'none';
+            }
+        }
+
+        function disableButtons(disabled = true) {
+            if(analyzeButton) analyzeButton.disabled = disabled;
+            if(analyzeUrlButton) analyzeUrlButton.disabled = disabled;
+        }
+
+        // --- Core Classification Logic ---
+        async function performClassification(imageSource, sourceDescription = "image") {
+            if (!classifier) {
+                updateStatus("⚠️ Model not loaded yet. Please wait.", false, true);
+                return;
+            }
+            updateStatus(`Consulting the Oracle… interpreting ${sourceDescription}...`, true);
+            disableButtons(true);
+
+            // Clear previous results and show placeholder structure immediately
+            resultDiv.innerHTML = `
+                <div class="result-display">
+                    <div class="result-left">
+                         <div class="result-thumbnail-container">
+                            <img src="${imageSource}" alt="Image being analyzed" class="result-thumbnail loading-placeholder" onerror="this.parentElement.innerHTML='<p style=\\'color:red; text-align:center; padding: 2em;\\'>⚠️<br/>Error loading preview image.</p>';">
+                         </div>
+                         <div class="result-text">
+                            <p>🧠 Analyzing...</p>
+                         </div>
+                         <div class="result-chart-container">
+                             <!-- Chart placeholders -->
+                         </div>
+                     </div>
+                 </div>
+                 <div class="result-image-right">
+                     <img src="images/plato-tablet.png" alt="Plato cartoon holding a tablet">
+                 </div>`;
+
+             // Attempt classification
+            try {
+                const labels = ['logos', 'ethos', 'pathos']; // Ensure consistent order
+                const output = await classifier(imageSource, labels, { topk: labels.length }); // Get scores for ALL labels
+
+                // Find scores for each label
+                let scores = { logos: 0, ethos: 0, pathos: 0 };
+                let topResult = { label: 'unknown', score: 0 };
+                let highestScore = -1;
+
+                output.forEach(item => {
+                    if (labels.includes(item.label)) {
+                        scores[item.label] = item.score;
+                    }
+                    if(item.score > highestScore) {
+                        highestScore = item.score;
+                        topResult = item;
+                    }
+                });
+
+                const explanations = {
+                  ethos: "This image most evokes <strong>ethos</strong>, and appeals to credibility, authority, or character. A noble persuasion, resting on the shoulders of the source's integrity or status.",
+                  pathos: "This image most evokes <strong>pathos</strong>, and appeals to emotion, values, or imagination. It plays the lyre of the soul, aiming for feelings over facts.",
+                  logos: "This image most evokes <strong>logos</strong>, and relies on your grasp of logic, reason, evidence, or data. Its strength seeks to lie in the measured step of argument or presentation of facts."
+                };
+
+                // Format percentages
+                const logosPercent = (scores.logos * 100).toFixed(2);
+                const ethosPercent = (scores.ethos * 100).toFixed(2);
+                const pathosPercent = (scores.pathos * 100).toFixed(2);
+
+                // Update the innerHTML with the final results and chart
+              // --- New HTML Structure for 2x2 Grid ---
+              resultDiv.innerHTML = `
+                <div class="result-grid-container">
+                    <div class="result-thumbnail-area">
+                       <img src="${imageSource}" alt="Analyzed image: ${topResult.label.toUpperCase()}" class="result-thumbnail" onerror="this.style.display='none'; this.parentElement.innerHTML='<p style=\\'color:red; padding: 1em; text-align: center;\\'>⚠️ Error loading preview image.</p>';">
+                    </div>
+
+                    <div class="result-plato-graphic-area">
+                        <img src="images/plato-tablet.png" alt="Plato cartoon holding a tablet">
+                    </div>
+
+                    <div class="result-chart-area">
+                        <div class="chart-item">
+                            <div class="chart-bar logos-bar" style="height: ${logosPercent}%;"></div>
+                            <div class="chart-label">L</div>
+                        </div>
+                        <div class="chart-item">
+                            <div class="chart-bar ethos-bar" style="height: ${ethosPercent}%;"></div>
+                            <div class="chart-label">E</div>
+                        </div>
+                        <div class="chart-item">
+                            <div class="chart-bar pathos-bar" style="height: ${pathosPercent}%;"></div>
+                            <div class="chart-label">P</div>
+                        </div>
+                    </div>
+
+                    <div class="result-text-area">
+                        <p><strong>Classification:</strong> ${topResult.label.toUpperCase()}</p>
+                        <p><strong>Confidence:</strong> ${(topResult.score * 100).toFixed(2)}%</p>
+                        <p class="plato-says"><strong>Plato says:</strong> "${explanations[topResult.label] || 'Hmm, an appeal beyond my usual ken...'}"</p>
+                    </div>
+                </div>`;
+              // --- End of New HTML Structure ---
+
+                // --- Autoplay Corresponding Audio ---
+                try {
+                    const classificationLabel = topResult.label; // e.g., 'logos', 'ethos', 'pathos'
+                    const validLabels = ['logos', 'ethos', 'pathos'];
+
+                    if (validLabels.includes(classificationLabel)) {
+                        // Construct filename assuming files are in an 'audio' subfolder
+                        const audioFilename = `audio/plato-says-${classificationLabel}.mp3`;
+                        console.log(`Attempting to play audio: ${audioFilename}`); // For debugging
+
+                        const sound = new Audio(audioFilename);
+
+                        // Attempt to play, and catch potential errors (e.g., browser blocking autoplay)
+                        sound.play().catch(error => {
+                            console.warn(`Audio autoplay for ${classificationLabel} failed. Browser policy might require more specific user interaction or file might be missing.`, error);
+                            // Optionally, update status to inform user?
+                            // updateStatus("Interpretation complete. (Audio autoplay might be blocked by browser)", false);
+                        });
+                    } else {
+                         console.warn(`Unknown classification label "${classificationLabel}", cannot play audio.`);
+                    }
+                } catch (audioError) {
+                     console.error("Error initiating audio playback:", audioError);
+                }
+                // --- End Autoplay Audio ---								
+	
+              updateStatus("Interpretation complete. What say you?", false);
+							
+            } catch (err) {
+                console.error(`Classification Error for ${imageSource}:`, err);
+                let errorMsg = "⚠️ Something went wrong during AI interpretation. Check console.";
+                if ((err.message && (err.message.includes('Failed to fetch') || err.message.includes('NetworkError'))) || (err.cause && err.cause.message.includes('Failed to fetch'))) {
+                    errorMsg = "⚠️ The AI model could not fetch the image URL for analysis. The image might be protected, moved, or the URL broken.";
+                }
+                updateStatus(errorMsg, false, true);
+                // Show error message in the result area, keeping structure if possible
+                const resultDisplay = resultDiv.querySelector('.result-display .result-left');
+                 if(resultDisplay) {
+                      resultDisplay.innerHTML = `<p style="color: red; padding: 2em; text-align: center;">${errorMsg}</p>`;
+                 } else {
+                     resultDiv.innerHTML = `<p style="color: red; padding: 2em; text-align: center;">${errorMsg}</p>`; // Fallback
+                 }
+            } finally {
+                disableButtons(false); // Re-enable buttons
+            }
+        }
+
+        // --- Handler for File Upload ---
+        async function handleAnalyzeUpload() {
+             if (!imageInput || !resultDiv || !analyzeButton || !analyzeUrlButton) return;
+             if (imageInput.files.length === 0) {
+                updateStatus('Please upload an image scroll first.', false, true);
+                return;
+             }
+             const file = imageInput.files[0];
+             const reader = new FileReader();
+             reader.onload = async () => {
+                await performClassification(reader.result, "uploaded image");
+             };
+             reader.onerror = () => {
+                console.error("File Reading Error:", reader.error);
+                updateStatus("⚠️ Failed to read the image file.", false, true);
+                disableButtons(false);
+             };
+             reader.readAsDataURL(file);
+        }
+
+        // --- Handler for URL Input (using Cloudflare Worker) ---
+        async function handleAnalyzeUrl() {
+             if (!urlInput || !resultDiv || !analyzeUrlButton || !analyzeButton) return;
+             const targetUrl = urlInput.value.trim();
+             if (!targetUrl) {
+                updateStatus("Please enter a web page URL.", false, true);
+                return;
+             }
+             if (!targetUrl.startsWith('http://') && !targetUrl.startsWith('https://')) {
+                updateStatus("Invalid URL. Please include http:// or https://", false, true);
+                return;
+             }
+             if (CLOUDFLARE_WORKER_URL.includes('your-worker-name')) {
+                updateStatus("⚠️ Developer Setup Needed: Cloudflare Worker URL is not set.", false, true);
+                resultDiv.innerHTML = `<p style="color: orange; padding: 2em;">Worker URL needs configuration.</p>`;
+                return;
+             }
+
+             updateStatus("Requesting page preview via secure worker...", true);
+             disableButtons(true);
+             resultDiv.innerHTML = ""; // Clear results
+
+             try {
+                const response = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ targetUrl: targetUrl })
+                });
+
+                if (!response.ok) {
+                    let errorDetail = `Worker responded with status ${response.status}`;
+                    try { const errorData = await response.json(); errorDetail = errorData.error || errorDetail; } catch(e) {}
+                    throw new Error(`Failed to get preview: ${errorDetail}`);
+                }
+
+                const data = await response.json();
+                if (data.error) { throw new Error(`Preview service error: ${data.error}`); }
+                if (!data.imageUrl || typeof data.imageUrl !== 'string' || !data.imageUrl.startsWith('http')) {
+                    throw new Error("Preview service did not return a valid image URL.");
+                }
+
+                await performClassification(data.imageUrl, `image from ${new URL(targetUrl).hostname}`);
+
+             } catch (err) {
+                console.error("URL Analysis via Worker Error:", err);
+                updateStatus(`⚠️ Error processing URL: ${err.message}`, false, true);
+                resultDiv.innerHTML = `<p style="color: red; padding: 2em; text-align: center;">Could not analyze URL. ${err.message}.</p>`;
+                disableButtons(false); // Ensure buttons re-enabled on error
+             }
+             // No finally here for button disable, as performClassification handles it
+        }
+
+        // --- Load Model ---
+        async function loadModel() {
+          updateStatus("Summoning Plato... loading model...", true);
+          updateModelStatus(false);
+          try {
+            classifier = await pipeline('zero-shot-image-classification', MODEL_NAME);
+            updateStatus("Plato has arrived. The model is ready.", false);
+            updateModelStatus(true);
+            disableButtons(false); // Enable buttons only AFTER model loads
+            analyzeButton.addEventListener('click', handleAnalyzeUpload);
+            analyzeUrlButton.addEventListener('click', handleAnalyzeUrl);
+          } catch (error) {
+            updateStatus("⚠️ Failed to load model. Check console & network. Try refreshing.", false, true);
+            updateModelStatus(false); // Show loading failed
+             console.error("Model Loading Error:", error);
+             disableButtons(true); // Keep buttons disabled if model failed
+          }
+        }
+
+        // Start loading the model once the DOM is ready
+        window.onload = loadModel;
+
+    </script>
+</body>
+</html>
